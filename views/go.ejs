@@ -1,0 +1,213 @@
+<style>
+  body {
+    background-color: steelblue;
+    font-family: arial;
+    margin: 0;
+    height: auto;
+  }
+
+  #container {
+    background: white;
+    padding: 1%;
+    position: absolute;
+    height: 200px;
+    width: 100%;
+    top: 50%;
+    text-align: center;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  #signinForm {
+    position: relative;
+    width: 250px;
+    margin: 0 auto;
+  }
+
+  .field {
+    position: relative;
+    height: 35px;
+    margin: 25px;
+  }
+
+  .input {
+    height: 35px;
+    width: 100%;
+    text-indent: 10px;
+    font-size: 14px;
+    border: 1px solid steelblue;
+    background-color: transparent;
+  }
+
+  .labels {
+    position: absolute;
+    background-color: white;
+    color: steelblue;
+    padding: 0 5px;
+    left: 10px;
+    top: 0;
+    margin-top: 13px;
+    font-size: 12px;
+    z-index: -1;
+  }
+
+  #valid_login, #valid_password {
+    position: absolute;
+    background-color: white;
+    color: red;
+    top: 0;
+    left: 102%;
+    width: 150px;
+    text-align: left;
+    font-size: 12px;
+    display: none;
+  }
+
+  #signinButton{
+    background-color: steelblue;
+    color: white;
+    border: 0;
+    padding: 5px 20px;
+    border-radius: 3px;
+  }
+
+  #rememberMe{
+    font-size: 14px;
+  }
+
+  #loader {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    text-align: center;
+    -webkit-transform: translateY(-50%) rotateX(180deg);
+    -moz-transform: translateY(-50%) rotateX(180deg);
+    -ms-transform: translateY(-50%) rotateX(180deg);
+    -o-transform: translateY(-50%) rotateX(180deg);
+    transform: translateY(-50%) rotateX(180deg);
+    font-size: 30px;
+    color: steelblue;
+    visibility: hidden;
+  }
+
+  #animateContainer {
+    position: relative;
+    height: 40px;
+    width: 100%;
+  }
+
+  #loaderAnimate {
+    animation: loader 3s cubic-bezier(.8,0,.2,1) infinite;
+    height: 40px;
+    width: 40px;
+    margin: 0 auto;
+  }
+
+  @keyframes loader {
+    90% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(180deg);
+    }
+  }
+
+  #top {
+    animation: top 3s linear infinite;
+    border-top: 20px solid steelblue;
+    border-right: 20px solid transparent;
+    border-left: 20px solid transparent;
+    height: 0px;
+    width: 1px;
+    transform-origin: 50% 100%;
+  }
+
+  @keyframes top {
+    90% {
+      transform: scale(0);
+    }
+
+    100% {
+      transform: scale(0);
+    }
+  }
+
+  #bottom {
+    animation: bottom 3s linear infinite;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid steelblue;
+    border-left: 20px solid transparent;
+    height: 0px;
+    width: 1px;
+    transform: scale(0);
+    transform-origin: 50% 100%;
+  }
+
+  @keyframes bottom {
+    10% {
+      transform: scale(0);
+    }
+
+    90% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  #line {
+    animation: line 3s linear infinite;
+    border-left: 1px dotted steelblue;
+    height: 0px;
+    width: 0px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  @keyframes line {
+    10% {
+      height: 20px;
+    }
+
+    100% {
+      height: 20px;
+    }
+  }
+
+</style>
+<div id="container">
+    <form id="signinForm" action="/los" method="post">
+        <div class="field">
+            <input id="email" class="input" type="email" />
+            <p id="label_login" class="labels"></p>
+            <span id="valid_login">* field must be filled</span>
+        </div>
+        <div class="field">
+            <input id="password" class="input" type="password" />
+            <p id="label_password" class="labels"></p>
+            <span id="valid_password">* field must be filled</span>
+        </div>
+        <div class="field">
+            <input id="signinButton" type="submit" value="Sign in" />
+            <label id="rememberMe">
+                <input type="checkbox" />Remember me</label>
+        </div>
+    </form>
+    <div id="loader">
+        <p>LOADING</p>
+        <div id="animateContainer">
+            <div id="loaderAnimate">
+                <div id="top"></div>
+                <div id="bottom"></div>
+                <div id="line"></div>
+            </div>
+        </div>
+    </div>
+</div>
