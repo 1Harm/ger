@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>MedHelp</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link href="https://cimg2.ibsrv.net/cimg/www.internetbrands.com/526x294_85/870/ourbrands_medhelp-594870.jpg" rel="icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="./vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="./vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="./vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="./vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="./vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="./vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="./css/style.css" rel="stylesheet">
+</head>
+<style>
+  .wrapper{
+    position: fixed;
+    top: 0;
+    /*left: -100%;*/
+    right: -100%;
+    height: 100%;
+    width: 100%;
+    background: #000;
+
+    transition: all 0.6s ease-in-out;
+  }
+  #active:checked ~ .wrapper {
+    /*left: 0;*/
+    right: 0;
+  }
+  .menu-btn{
+    position: absolute;
+    z-index: 2;
+    right: 20px;
+    /*left: 20px; */
+    top: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;*/
+  background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%); */
+  transition: all 0.3s ease-in-out;
+  }
+  .menu-btn span,
+  .menu-btn:before,
+  .menu-btn:after{
+    content: "";
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 30%;
+    width: 40%;
+    border-bottom: 2px solid #000;
+    transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .menu-btn:before{
+    transform: translateY(-8px);
+  }
+  .menu-btn:after{
+    transform: translateY(8px);
+  }
+
+  .close {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transition: background .6s;
+  }
+
+  /* closing animation */
+  #active:checked + .menu-btn span {
+    transform: scaleX(0);
+  }
+  #active:checked + .menu-btn:before {
+    transform: rotate(45deg);
+    border-color: #fff;
+  }
+  #active:checked + .menu-btn:after {
+    transform: rotate(-45deg);
+    border-color: #fff;
+  }
+  .wrapper ul{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    height: 90%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    text-align: center;
+  }
+  .wrapper ul li{
+    height: 10%;
+    margin: 15px 0;
+  }
+  .wrapper ul li a{
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 500;
+    padding: 5px 30px;
+    color: #fff;
+    border-radius: 50px;
+    position: absolute;
+    line-height: 50px;
+    margin: 5px 30px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .wrapper ul li a:after{
+    position: absolute;
+    content: "";
+    background: #fff;
+    /*background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);*/
+    /*background: linear-gradient(375deg, #1cc7d0, #2ede98);*/
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 50px;
+    transform: scaleY(0);
+    z-index: -1;
+    transition: transform 0.3s ease;
+  }
+  .wrapper ul li a:hover:after{
+    transform: scaleY(1);
+  }
+  .wrapper ul li a:hover{
+    color: #1a73e8;
+  }
+  input[type="checkbox"]{
+    display: none;
+  }
+  .content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    text-align: center;
+    width: 100%;
+    color: #202020;
+  }
+  .content .title{
+    font-size: 40px;
+    font-weight: 700;
+  }
+  .content p{
+    font-size: 35px;
+    font-weight: 600;
+  }
+
+  #active:checked ~ .wrapper ul li a{
+    opacity: 1;
+  }
+  .wrapper ul li a{
+    transition: opacity 1.2s, transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translateX(100px);
+  }
+  #active:checked ~ .wrapper ul li a{
+    transform: none;
+    transition-timing-function: ease, cubic-bezier(.1,1.3,.3,1); /* easeOutBackを緩めた感じ */
+    transition-delay: .6s;
+    transform: translateX(-100px);
+  }
+</style>
+<body>
+  <div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex justify-content-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-envelope"></i> <a href="mailto:contact@example.com">medhelp@google.com</a>
+      </div>
+      <div class="d-none d-lg-flex social-links align-items-center">
+        <a href="https://github.com/1Harm/ger" class="gihub"><i class="bi bi-github"></i></a>
+        <a href="https://t.me/MedKomekbot" class="telegram"><i class="bi bi-telegram"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="/google" class="google"><i class="bi bi-google"></i></i></a>
+      </div>
+    </div>
+  </div>
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html">MedHelp</a></h1>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="/about">About</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
+          <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="/au">Auth</a></li>
+          <li><a class="nav-link scrollto" href="/login">booking</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+      <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
+      <input type="checkbox" id="active">
+      <label for="active" class="menu-btn"><span></span></label>
+      <label for="active" class="close"></label>
+      <div class="wrapper">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href='/about'>About</a></li>
+          <li><a href="/prof">Profile</a></li>
+          <li><a href="#members">Members</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container">
+      <h1>Welcome to MedHelp</h1>
+      <h2>Booking for doctor's appointment online</h2>
+      <a href="/about" class="btn-get-started scrollto">Get Started</a>
+    </div>
+  </section>
+  <main id="main">
+    <section id="why-us" class="why-us">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4 d-flex align-items-stretch">
+            <div class="content">
+              <h3>Why Choose MedHelp?</h3>
+              <p>
+               Best hospitals with appropriate doctors services and appointment for doctor's session.
+              </p>
+              <div class="text-center">
+                <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8 d-flex align-items-stretch">
+            <div class="icon-boxes d-flex flex-column justify-content-center">
+              <div class="row">
+                <div class="col-xl-4 d-flex align-items-stretch">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="bx bx-receipt"></i>
+                    <h4>Why Choose MedHelp?</h4>
+                    <p> Best hospitals with appropriate doctors services and appointment for doctor's session.</p>
+                  </div>
+                </div>
+                <div class="col-xl-4 d-flex align-items-stretch">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="bx bx-cube-alt"></i>
+                    <h4>MedHelp</h4>
+                    <p>Online platform for booking.</p>
+                  </div>
+                </div>
+                <div class="col-xl-4 d-flex align-items-stretch">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="bx bx-images"></i>
+                    <h4>Doctors</h4>
+                    <p>Doctors from best hospitals of Nur-Sultan</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a>
+          </div>
+
+          <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+            <h3>For anyone who experiences pleasure - something that can be achieved, that produces</h3>
+            <p>Be a pleasure from sports or exercise. Not very and, but a list of the least times. Paid pleasure, but in order to ease the pain in the body. Free dance can also be such that there are no boundaries. Sponsor or pleasure.</p>
+
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-fingerprint"></i></div>
+              <h4 class="title"><a href="">Booking</a></h4>
+              <p class="description">Finding free time for going hospital.</p>
+            </div>
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-atom"></i></div>
+              <h4 class="title"><a href="">Psychology</a></h4>
+              <p class="description">Human happiness is a pleasure because it experiences the consequences of the great. And really hates. Are either original or less original to choose from each</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="counts" class="counts">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="fas fa-user-md"></i>
+              <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Doctors</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+            <div class="count-box">
+              <i class="far fa-hospital"></i>
+              <span data-purecounter-start="0" data-purecounter-end="18" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Departments</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="fas fa-flask"></i>
+              <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Laboratories</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="fas fa-award"></i>
+              <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Awards of best booking webpage</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Services</h2>
+          <p>Great pains advantage wins. The needs of its consequences of any flight and him of course. Let be the main application. Anyone including anyone desire. And no one who prevents takes other things. Because the run is in this services advantage even here which.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="">Cardiology</a></h4>
+              <p>Looking for rhythm of your heart.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-pills"></i></div>
+              <h4><a href="">Medicine</a></h4>
+              <p>Doctors create the best medicament</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-hospital-user"></i></div>
+              <h4><a href="">Hospitals</a></h4>
+              <p>Mediker and other hospitals of Kazakhstan</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="appointment" class="appointment section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Make an Appointment</h2>
+          <p>Create request in database.</p>
+        </div>
+
+        <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <div class="validate"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 form-group mt-3">
+              <input type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group mt-3">
+              <select name="department" id="department" class="form-select">
+                <option value="">Select Department</option>
+                <option value="Department 1">Mediker</option>
+                <option value="Department 2">Presidentskaya</option>
+                <option value="Department 3">Damumed</option>
+              </select>
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group mt-3">
+              <select name="doctor" id="doctor" class="form-select">
+                <option value="">Select Doctor</option>
+                <option value="Doctor 1">Doctor 1</option>
+                <option value="Doctor 2">Doctor 2</option>
+                <option value="Doctor 3">Doctor 3</option>
+              </select>
+              <div class="validate"></div>
+            </div>
+          </div>
+
+          <div class="form-group mt-3">
+            <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
+            <div class="validate"></div>
+          </div>
+          <div class="mb-3">
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
+          </div>
+          <div class="text-center"><button type="submit">Make an Appointment</button></div>
+        </form>
+
+      </div>
+    </section>
+    <section id="departments" class="departments">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Departments</h2>
+          <p>Departments with different hospitals.</p>
+        </div>
+
+        <div class="row gy-4">
+          <div class="col-lg-3">
+            <ul class="nav nav-tabs flex-column">
+              <li class="nav-item">
+                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Cardiology</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Neurology</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Pediatrics</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Eye Care</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-9">
+            <div class="tab-content">
+              <div class="tab-pane active show" id="tab-1">
+                <div class="row gy-4">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Cardiology</h3>
+                    <p class="fst-italic"> Cardiology is a branch of medicine that deals with the disorders of the heart as well as some parts of the circulatory system.</p>
+                    <p>The field includes medical diagnosis and treatment of congenital heart defects.</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="https://phonoteka.org/uploads/posts/2021-05/1620176434_2-phonoteka_org-p-kardiologiya-fon-2.jpg" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-2">
+                <div class="row gy-4">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Neurology is a branch of medicine dealing with disorders of the nervous system.ri</h3>
+                    <p class="fst-italic">Neurology deals with the diagnosis and treatment of all categories of conditions and disease involving the central</p>
+                    <p>Peripheral nervous systems (and their subdivisions, the autonomic and somatic nervous systems), including their coverings, blood vessels, and all effector tissue, such as muscle.</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="https://medicine.ac/wp-content/uploads/2020/03/neurology-treatment.jpg" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-3">
+                <div class="row gy-4">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Flight pains explorer dance to denounce laborious pain</h3>
+                    <p class="fst-italic">The entire open denounce. Your result right pleasure right on any selected</p>
+                    <p>These symptoms are the result of free easy in pleasure. Our very needs some avoid debts anyone you want. Him from most of the error in the consequences of physical and. Choosing asperiores but that truth will open for snacks explorer</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="https://www.ochkov.net/wiki/storage/app/media/1./u-grudnichka-oteklo-veko-chto-delat/f2.jpg" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-4">
+                <div class="row gy-4">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>It will be very sindera nature is the master matrelat sando reda</h3>
+                    <p class="fst-italic">Every flattering often those who are debts on that.</p>
+                    <p>Exercise of us all. As rejects repudiated less. Everyone accepted that no more than to that of her. Because he hates the truth and who some of the restaurant. Blinded but is being or life annoying pleasure.</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="https://www.thescottishsun.co.uk/wp-content/uploads/sites/2/2021/07/NINTCHDBPICT000618770026-4.jpg?strip=all&amp;quality=100&amp;w=1200&amp;h=800&amp;crop=1 alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <section id="doctors" class="doctors">
+      <div class="container">
+        <div class="section-title">
+          <h2>Doctors</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="member d-flex align-items-start">
+              <div class="pic"><img src="https://www.cannamd.com/wp-content/uploads/2019/01/Three-Doctors.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Marat Rakhymov</h4>
+                <span>Chief Medical Officer</span>
+                <p>Explain the pleasure of plasticity and avoided those sorrows like</p>
+                <div class="social">
+                  <a href="https://github.com/1Harm/ger"><i class="ri-github-fill"></i></a>
+                  <a href="https://t.me/MedKomekbot"><i class="ri-telegram-fill"></i></a>
+                  <a href="/google"><i class="ri-google-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mt-4 mt-lg-0">
+            <div class="member d-flex align-items-start">
+              <div class="pic"><img src="https://miro.medium.com/max/1200/1*lnkO_fE-FVIf93dDyM9wcw.jpeg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Amina Jackymzhanovna</h4>
+                <span>Anesthesiologist</span>
+                <p>Operations</p>
+                <div class="social">
+                  <a href="https://github.com/1Harm/ger"><i class="ri-github-fill"></i></a>
+                  <a href="/google"><i class="ri-google-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mt-4">
+            <div class="member d-flex align-items-start">
+              <div class="pic"><img src="https://medpravo.net/wp-content/uploads/2019/08/doktor_1565173188.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>William Anderson</h4>
+                <span>Cardiology</span>
+                <p>Helping people with heart diseases</p>
+                <div class="social">
+                  <a href="https://github.com/1Harm/ger"><i class="ri-github-fill"></i></a>
+                  <a href="/google"><i class="ri-google-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mt-4">
+            <div class="member d-flex align-items-start">
+              <div class="pic"><img src="https://goodday.cmsmasters.net/medicine/wp-content/uploads/sites/10/2014/04/photodune-5079010-female-doctor-in-front-of-medical-group-m.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Amanda Rally</h4>
+                <span>Neurosurgeon</span>
+                <div class="social">
+                  <a href="https://github.com/1Harm/ger"><i class="ri-github-fill"></i></a>
+                  <a href="/google"><i class="ri-google-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <section id="faq" class="faq section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Frequently Asked Questions</h2>
+          <p>Here you will find answers for some questions</p>
+        </div>
+
+        <div class="faq-list">
+          <ul>
+            <li data-aos="fade-up">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">What is MedHelp? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                <p>
+                  Best hospitals with appropriate doctors services and appointment for doctor's session.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">What is your partners? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Different hospitals from Nur-Sultan starting from Mediker.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="200">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Where you can make booking? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  In booking form
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="300">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Any templates? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  In video more info.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="testimonial-item">
+                  <h3>Yeldar</h3>
+                  <h4>Web developer</h4>
+                  <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    Best website for booking appointment in doctor
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="testimonial-item">
+                  <h3>Magzhan</h3>
+                  <h4>Designer</h4>
+                  <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    Expert is person who can design
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="testimonial-item">
+                  <h3>Alikhan</h3>
+                  <h4>Designer</h4>
+                  <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    App is good opportunity
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="testimonial-item">
+                  <h3>Nurzhan</h3>
+                  <h4>Telegram creator</h4>
+                  <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    Telegram is platform for future marketing
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+    <section id="gallery" class="gallery">
+      <div class="container">
+        <div class="section-title">
+          <h2>Gallery</h2>
+          <p>Here some photos from hospitals that cooperating with us.</p>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row g-0">
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="https://miro.medium.com/max/849/1*Y4QmwNiaGA6IaTQo9k5WEg.jpeg" class="galelry-lightbox">
+                <img src="https://miro.medium.com/max/849/1*Y4QmwNiaGA6IaTQo9k5WEg.jpeg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="https://miro.medium.com/max/849/1*Y4QmwNiaGA6IaTQo9k5WEg.jpeg" class="galelry-lightbox">
+                <img src="https://miro.medium.com/max/849/1*Y4QmwNiaGA6IaTQo9k5WEg.jpeg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href=https://www.healthstaffrecruitment.com.au/wp-content/uploads/2018/02/bigstock-Doctor-With-Medical-Healthcare-213017662.jpg" class="galelry-lightbox">
+                <img src="https://www.healthstaffrecruitment.com.au/wp-content/uploads/2018/02/bigstock-Doctor-With-Medical-Healthcare-213017662.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="https://qph.fs.quoracdn.net/main-qimg-dedf11d85c5976d94f6bf163b7f6fe96" class="galelry-lightbox">
+                <img src="https://qph.fs.quoracdn.net/main-qimg-dedf11d85c5976d94f6bf163b7f6fe96" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="./img/gallery/gallery-5.jpg" class="galelry-lightbox">
+                <img src="./img/gallery/gallery-5.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="./img/gallery/gallery-6.jpg" class="galelry-lightbox">
+                <img src="./img/gallery/gallery-6.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="./img/gallery/gallery-7.jpg" class="galelry-lightbox">
+                <img src="./img/gallery/gallery-7.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="./img/gallery/gallery-8.jpg" class="galelry-lightbox">
+                <img src="./img/gallery/gallery-8.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact</h2>
+          <p> For contact information you can use telegram bot or using booking form. Also, there are information in the footer with social medias.</p>
+        </div>
+      </div>
+
+      <div>
+        <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <div class="container">
+        <div class="row mt-5">
+
+          <div class="col-lg-4">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>E105 Street, Nur-Sultan</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>medhelp@google.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Call:</h4>
+                <p>+7 708 744 45 46</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8 mt-5 mt-lg-0">
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>MedHelp</h3>
+            <p>
+              E108 Street <br>
+              Nur-Sultan, NS 101100<br>
+              Kazakhstan<br><br>
+              <strong>Phone:</strong> +7 708 744 45 56<br>
+              <strong>Email:</strong> medhelp@gmail.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="/re">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#department">Neurology</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#departments">Cardiology</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#departments">Pediatrics</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#departments">Eye care</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Join Our Newsletter</h4>
+            <p>For more information</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="me-md-auto text-center text-md-start">
+      </div>
+    </div>
+  </footer>
+  <script src="./vendor/purecounter/purecounter.js"></script>
+  <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="./vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="./vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="./vendor/php-email-form/validate.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Booking Form - Hospitals </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="path/to/css/smart-forms.css">
+    <link rel="stylesheet" href="path/to/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+
+</head>
+<body>
+<style type="text/css">
+    label {
+        display: inline-block;
+        margin-bottom: 5px;
+        font-weight: 700;
+    }
+    .form-control {
+        border: 1px solid #ccc;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+    .book-now-form {
+        padding-top: 10px;
+    }
+    .book-now-form .form-group {
+        margin-right: 1.5em;
+    }
+    .book-now-form label {
+        font-size: 13px;
+        display: block;
+        color: #fff;
+        padding-top: 5px;
+    }
+    .book-now-form .form-control {
+        height: 25px;
+        line-height: 25px;
+        background: white;
+        display: block;
+        font-size: 12px;
+        color: red;
+        padding: 4px 6px;
+    }
+    button{
+        color: red;
+    }
+    .book-now-form #start-date, .book-now-form #end-date {
+        padding-right: 22px;
+
+    }
+    @media (min-width: 992px) {
+        .book-now-form label {
+            float: left;
+            margin-right: 1em;
+            padding-top: 2px;
+            display: block;
+        }
+    }
+    @media (min-width: 768px) {
+        .book-now-form .form-group {
+            margin-bottom: 0;
+            float: left;
+            margin-right: 1em;
+        }
+        .book-now-form label {
+            float: left;
+            margin-right: 5px;
+            padding-top: 2px;
+            display: block;
+            padding-top:5px;
+        }
+        .book-now-form .form-control {
+            float: left;
+            width: 100px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+    }
+    @media (max-width: 768px) {
+        #navbar {
+            width: 100%;
+        }
+    }
+    .navbar-brand>img {
+        padding-top: 11px;
+        width: 130px;
+    }
+    .navbar-brand {
+        height: auto;
+        margin: 0;
+        padding: 0;
+    }
+    #navbar {
+        float: right;
+    }
+    .navbar {
+        background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    }
+    .navbar-default .navbar-toggle {
+        border-color: #fff;
+        color: #fff;
+    }
+    .navbar-collapse {
+        padding-right: 0px;
+    }
+    .btn-sm {
+        line-height: 1;
+    }
+
+    .ct-section_header {
+        text-align: center;
+        padding-top: 10px;
+    }
+    .ct-section_header h2 {
+        font-size: 65px;
+        font-size: 6.5rem;
+        color: red;
+        font-family: 'nimbus-sans-condensed', sans-serif;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+    .ct-section_header-separator {
+        background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+        height: 2px;
+        height: 0.2rem;
+        display: inline-block;
+        max-width: 700px;
+        width: 100%;
+    }
+    .ct-section_header-description {
+        font-family: 'nimbus-sans-condensed', sans-serif;
+        font-weight: normal;
+        color: #291b07;
+        font-size: 24px;
+        font-size: 2.6rem;
+        max-width: 750px;
+        max-width: 75rem;
+        display: inline-block;
+        margin-top: 20px;
+    }
+    .ct-u-color-white .ct-section_header h2,
+    .ct-u-color-white .ct-section_header-description {
+        color: inherit;
+    }
+    @media only screen and (max-width: 479px) {
+        .ct-section_header {
+            padding: 50px 0 45px;
+            padding: 5rem 0 4.5rem;
+        }
+        .ct-section_header h2 {
+            font-size: 45px;
+            font-size: 4.5rem;
+        }
+        .ct-section_header-separator {
+            width: 140px;
+            width: 14rem;
+        }
+        .ct-section_header-description {
+            font-size: 24px;
+            font-size: 2.4rem;
+        }
+    }
+    section.ct_icon_box_section .ct-icon_box.media .fa, .ct-icon_box.media .fa {
+        font-size: 22px;
+        color: #fff;
+        background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+        border-radius: 50%;
+        padding: 12px;
+    }
+    .ct-icon_box.media {
+        margin-bottom: 35px;
+        padding: 20px 20px;
+    }
+</style>
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $( function() {
+            var dateToday = new Date();
+            var dates = $("#start-date, #end-date").datepicker({
+                defaultDate: "+2d",
+                changeMonth: true,
+                numberOfMonths: 1,
+                minDate: dateToday,
+                onSelect: function(selectedDate) {
+                    var option = this.id == "start-date" ? "minDate" : "maxDate",
+                        instance = $(this).data("datepicker"),
+                        date = $.datepicker.parseDate(instance.settings.dateFormat ||     $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+                    dates.not(this).datepicker("option", option, date);
+                }
+            });
+        });
+    });
+
+</script>
+<div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span>Book Now!</span>
+                </button>
+
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="form book-now-form" role="form" id="widget_booking_form" name="widget_booking_form" >
+                    <input id="campaign" type="hidden" value="visitflagler_topNavWidget" name="campaign"> <input id="clone_id" type="hidden" value="278" name="clone_id">
+                    <div class="form-group">
+                        <label for="lodging">Book for queue</label>
+                        <select class="form-control" id="lodgingID" name="lodgingID" placeholder="All Lodging">
+                            <option value="103" selected="selected">
+                                All Options
+                            </option>
+                            <option value="50">
+                                Queue
+                            </option>
+                            <option value="9">
+                                Hospitals
+                            </option>
+                            <option value="21">
+                                Doctors
+                            </option>
+                            <option value="5">
+                                Symptoms
+                            </option>
+                            <option value="7">
+                                Deals
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="check-in">Check In</label>
+                        <input type="text"  class="form-control" id="start-date" name="start-date" placeholder="mm/dd/yyyy">
+                    </div>
+                    <!--check out element-->
+                    <div class="form-group">
+                        <label for="check-out">Check Out</label>
+                        <input type="text" class="form-control" id="end-date" name="end-date" placeholder="mm/dd/yyyy" >
+                    </div>
+                    <div class="form-group">
+                        <button name="Submit" href="#" class="btn btn-sm btn-warning">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </nav>
+    <section class="ct_icon_box_section">
+        <div class="container">
+            <div class="ct-section_header ct-section_header--type2">
+                <h2>
+                    Booking Form
+                </h2>
+                <div class="ct-section_header-description">
+                    Register for a doctor's appointment
+                </div>
+                <div class="clearfix">
+                    &nbsp;
+                </div>
+                <div class="ct-section_header-separator">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="ct-icon_box media">
+                        <div class="media-left">
+                            <i class="fa fa-heart" style="font-size:58px;color:red"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">
+                                Doctor's appointment
+                            </h3>
+                            <div class="ct-icon_box-content">
+                                Choose date and time.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="ct-icon_box media">
+                        <div class="media-left">
+                            <i class="fa fa-stethoscope" style="font-size:58px;color:red"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">
+                                Date
+                            </h3>
+                            <div class="ct-icon_box-content">
+                                Choose date.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="ct-icon_box media">
+                        <div class="media-left">
+                            <i class="fa fa-ambulance" style="font-size:58px;color:red"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">
+                                Symptoms
+                            </h3>
+                            <div class="ct-icon_box-content">
+                                Make decision.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="ct-icon_box media">
+                        <div class="media-left">
+                            <i class="fa fa-ship" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">
+                                Hosptials
+                            </h3>
+                            <div class="ct-icon_box-content">
+                                Choose your hospital
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="ct-icon_box media">
+                        <div class="media-left">
+                            <i class="fa fa-ambulance" style="font-size:58px;"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">
+                                Queue
+                            </h3>
+                            <div class="ct-icon_box-content">
+                                Book your place in queue.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="ct-icon_box media">
+                        <div class="media-left">
+                            <i class="fa fa-user-md" style="font-size:58px"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">
+                                Doctors
+                            </h3>
+                            <div class="ct-icon_box-content">
+                                Choose your doctor
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+                    <div class="col-md-4 col-sm-4 mt-boxy-3">
+                        <div class="mt-boxy-color"></div>
+                        <div class="time-info">
+                            <h3>Opening Hours</h3>
+                            <table style="margin: 8px 0px 0px;" border="1">
+                                <tbody>
+                                <tr>
+                                    <td>Monday - Friday</td>
+                                    <td>8.00 - 17.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Saturday</td>
+                                    <td>9.30 - 17.30</td>
+                                </tr>
+                                <tr>
+                                    <td>Sunday</td>
+                                    <td>9.30 - 15.00</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
